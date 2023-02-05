@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/promise-function-async */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import prompts, { type Falsy } from "prompts";
 import { downloadTemplate } from "giget";
@@ -38,6 +40,9 @@ const answers = await prompts(
       name: "d",
       message: "Where do you want to create your Vitepress app ?",
       type: args._[0] ? (null as Falsy) : "text",
+      format: (value: string) => {
+        return value.replace(/\/$/, "");
+      },
     },
     {
       name: "l",
@@ -67,3 +72,20 @@ const answers = await prompts(
 if (answers.l) args.l = answers.l;
 if (answers.d) args._[0] = answers.d;
 if (answers.p) args.p = answers.p;
+
+const spinner = new Spinner("Initializing your Vitepress app...");
+
+try {
+  const base = "github:create-vitepress-app/core/templates/";
+  const cfg = { force: true, dir: args._[0] };
+
+  await Promise.all([
+    downloadTemplate(`${base}shared`, cfg),
+    downloadTemplate(`${base}${args.l}`, cfg),
+    args.p ? downloadTemplate(`${base}prettier`, cfg) : Promise.resolve(),
+  ]);
+
+  spinner.success();
+} catch (err) {
+  spinner.error(err);
+}
