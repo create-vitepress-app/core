@@ -15,7 +15,7 @@ const args = larser(process.argv, {
 });
 
 if (args.h) {
-  process.stdout.write(
+  console.log(
     `\x1b[1;94mcreate-vitepress-app\x1b[0m
 
 Usage:
