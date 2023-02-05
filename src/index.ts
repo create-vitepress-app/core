@@ -8,7 +8,6 @@ const args = larser(process.argv, {
   aliases: {
     language: ["l"],
     prettier: ["p"],
-    default: ["d"],
     help: ["h"],
   },
 });
@@ -23,13 +22,11 @@ Usage:
 
 Flags:
 
-  typescript, ts   Use Typescript as language.
-  javascript, js   Use Javascript as language.
-  prettier, p      Enable Prettier in the project.
-  default, d       Use recommended defaults.
+  language, l   Language to use. (ts, js)
+  prettier, p   Enable Prettier in the project.
 
 Options:
 
-  directory        Directory to create project in.`
+  directory     Directory to create project in.`
   );
 }
