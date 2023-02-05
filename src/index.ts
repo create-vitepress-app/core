@@ -6,6 +6,7 @@ import { downloadTemplate } from "giget";
 import Spinner from "kisig";
 import larser from "larser";
 import { readFile, writeFile } from "fs/promises";
+import { execSync } from "node:child_process";
 
 const args = larser(process.argv, {
   aliases: {
@@ -35,6 +36,9 @@ Options:
   );
 }
 
+console.clear();
+
+console.log(`\x1b[1;94mcreate-vitepress-app\x1b[0m`);
 process.on("SIGINT", process.exit);
 const answers = await prompts(
   [
@@ -62,9 +66,7 @@ const answers = await prompts(
     },
   ],
   {
-    onCancel: () => {
-      process.exit();
-    },
+    onCancel: () => process.exit(),
   }
 );
 
@@ -72,11 +74,12 @@ if (answers.l) args.l = answers.l;
 if (answers.d) args._[0] = answers.d;
 if (answers.p) args.p = answers.p;
 
+const dir = args._[0].replace(/\/$/, "");
+
 const spinner = new Spinner("Initializing your Vitepress app...");
 
 try {
   const base = "github:create-vitepress-app/core/templates/";
-  const dir = args._[0].replace(/\/$/, "");
   const cfg = { force: true, dir };
 
   await Promise.all([
@@ -99,3 +102,39 @@ try {
   spinner.error(err);
   process.exit(1);
 }
+
+const nextSteps = [
+  "\x1b[1;94mNext steps:\x1b[0m",
+  dir === "." ? "" : `\n· cd ${dir}`,
+  "",
+  "\n· npm start",
+];
+
+const answer = await prompts(
+  {
+    message: "Would you like to install dependencies now ?",
+    type: args.m ? (null as Falsy) : "select",
+    name: "m",
+    choices: [
+      { title: "npm", value: "npm" },
+      { title: "yarn", value: "yarn" },
+      { title: "pnpm", value: "pnpm" },
+      { title: "No", value: "n" },
+    ],
+  },
+  {
+    onCancel: () => process.exit(0),
+  }
+);
+
+if (answer.m) args.m = answer.m;
+
+if (args.m === "n") {
+  nextSteps[2] = "\n· npm install";
+} else {
+  execSync(`cd ${dir} && ${args.m} install`, {
+    stdio: "inherit",
+  });
+}
+
+console.log(...nextSteps);
