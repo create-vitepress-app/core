@@ -16,9 +16,10 @@ const args = larser(process.argv, {
 
 if (args.h) {
   process.stdout.write(
-    `\x1b[1;35mcreate-vitepress-app\x1b[0m
+    `\x1b[1;94mcreate-vitepress-app\x1b[0m
 
 Usage:
+
   $ npm init vitepress-app@latest [args]
 
 Flags:
