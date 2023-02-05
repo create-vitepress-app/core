@@ -1,5 +1,5 @@
 {
-  "name": "create-vite-app",
+  "name": "create-vitepress-app",
   "version": "1.0.0",
   "description": "The easiest way to create a vitepress app",
   "main": "index.js",
