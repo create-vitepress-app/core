@@ -14,19 +14,28 @@ const args = larser(process.argv, {
   },
 });
 
+if (args.ts && args.js) {
+  console.error("Conflicting Arguments: --ts and --js");
+  process.exit(1);
+}
+
 if (args.h) {
   console.log(
     `\x1b[1;94mcreate-vitepress-app\x1b[0m
 
 Usage:
 
-  $ npm init vitepress-app@latest [args]
+  $ npm init vitepress-app@latest [directory] [args]
 
 Flags:
 
   typescript, ts   Use Typescript as language.
   javascript, js   Use Javascript as language.
   prettier, p      Enable Prettier in the project.
-  default, d       Use recommended defaults.`
+  default, d       Use recommended defaults.
+
+Options:
+
+  directory        Directory to create project in.`
   );
 }
