@@ -2,12 +2,11 @@
 layout: home
 
 hero:
-  name: VitePress
-  text: Vite & Vue powered static site generator.
-  tagline: Lorem ipsum...
+  name: VitePress App
+  tagline: Pretty.. Cool.
   image:
     src: /logo.png
-    alt: VitePress
+    alt: create-vitepress-app logo
   actions:
     - theme: brand
       text: Get Started
