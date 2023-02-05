@@ -9,5 +9,15 @@ export default defineConfig({
 
   themeConfig: {
     logo: "/static/logo.svg",
+    nav: [{ text: "Docs", link: "/docs" }],
+    sidebar: [
+      {
+        text: "Documentation",
+        items: [
+          { text: "Introduction", link: "/" },
+          { text: "Other things", link: "/other" },
+        ],
+      },
+    ],
   },
 });
