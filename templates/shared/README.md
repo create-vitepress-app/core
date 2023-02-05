@@ -16,5 +16,4 @@ To preview your website:
 
 ## Resources
 
-- [Create-vitepress-app Documentation](https://example.com)
 - [Vitepress Documentation](https://vitepress.vuejs.org/guide)
