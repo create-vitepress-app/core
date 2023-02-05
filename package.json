@@ -4,6 +4,7 @@
   "description": "The easiest way to create a vitepress app",
   "main": "index.js",
   "type": "module",
+  "bin": "index.js",
   "scripts": {
     "compile": "swc src/index.ts -d dist --config-file .swcrc",
     "clean": "rmdir /Q /S dist",
