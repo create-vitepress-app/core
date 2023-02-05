@@ -47,5 +47,11 @@
     "prettier": "^2.8.3",
     "tsx": "^3.12.2",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "giget": "^1.0.0",
+    "kisig": "^1.0.2",
+    "larser": "^1.0.24",
+    "prompts": "^2.4.2"
   }
 }
