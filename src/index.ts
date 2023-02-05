@@ -6,18 +6,12 @@ import larser from "larser";
 
 const args = larser(process.argv, {
   aliases: {
-    typescript: ["ts"],
-    javascript: ["js"],
+    language: ["l"],
     prettier: ["p"],
     default: ["d"],
     help: ["h"],
   },
 });
-
-if (args.ts && args.js) {
-  console.error("Conflicting Arguments: --ts and --js");
-  process.exit(1);
-}
 
 if (args.h) {
   console.log(
