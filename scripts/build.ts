@@ -12,12 +12,6 @@ await writeFile(
   Buffer.from(JSON.stringify(object), "utf-8")
 );
 
-// Copy over the types
-await writeFile(
-  "./dist/index.d.ts",
-  await readFile("./src/types/index.d.ts", "utf-8")
-);
-
 // Copy the README file over.
 await copyFile("./README.md", "./dist/README.md");
 
