@@ -94,7 +94,7 @@ try {
 
     obj.devDependencies.prettier = "^2.8.3";
 
-    await writeFile(`${dir}/package.json`, JSON.stringify(obj));
+    await writeFile(`${dir}/package.json`, JSON.stringify(obj, null, "\t"));
   }
 
   spinner.success();
