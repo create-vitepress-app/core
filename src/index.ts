@@ -103,6 +103,8 @@ try {
   process.exit(1);
 }
 
+console.clear();
+
 const nextSteps = [
   "\x1b[1;94mNext steps:\x1b[0m",
   dir === "." ? "" : `\n· cd ${dir}`,
@@ -137,4 +139,5 @@ if (args.m === "n") {
   });
 }
 
+console.clear();
 console.log(...nextSteps);
