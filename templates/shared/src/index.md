@@ -5,7 +5,7 @@ hero:
   name: VitePress App
   tagline: Pretty.. Cool.
   image:
-    src: /logo.png
+    src: /static/logo.png
     alt: create-vitepress-app logo
   actions:
     - theme: brand
