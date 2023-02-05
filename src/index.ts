@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import prompts, { Falsy } from "prompts";
+import prompts, { type Falsy } from "prompts";
 import { downloadTemplate } from "giget";
 import Spinner from "kisig";
 import larser from "larser";
@@ -30,3 +30,40 @@ Options:
   directory     Directory to create project in.`
   );
 }
+
+process.on("SIGINT", process.exit);
+const answers = await prompts(
+  [
+    {
+      name: "d",
+      message: "Where do you want to create your Vitepress app ?",
+      type: args._[0] ? (null as Falsy) : "text",
+    },
+    {
+      name: "l",
+      message: "What language do you want to use ?",
+      type: args.l ? (null as Falsy) : "select",
+      choices: [
+        { title: "Typescript", value: "ts" },
+        { title: "Javascript", value: "js" },
+      ],
+    },
+    {
+      name: "p",
+      message: "Do you want to enable prettier ?",
+      type: args.p ? (null as Falsy) : "toggle",
+      initial: true,
+      active: "yes",
+      inactive: "no",
+    },
+  ],
+  {
+    onCancel: () => {
+      process.exit();
+    },
+  }
+);
+
+if (answers.l) args.l = answers.l;
+if (answers.d) args._[0] = answers.d;
+if (answers.p) args.p = answers.p;
