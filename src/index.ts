@@ -11,6 +11,7 @@ const args = larser(process.argv, {
   aliases: {
     language: ["l"],
     prettier: ["p"],
+    packageManager: ["m"],
     help: ["h"],
   },
 });
