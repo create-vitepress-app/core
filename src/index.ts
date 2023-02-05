@@ -5,6 +5,7 @@ import prompts, { type Falsy } from "prompts";
 import { downloadTemplate } from "giget";
 import Spinner from "kisig";
 import larser from "larser";
+import { readFile, writeFile } from "fs/promises";
 
 const args = larser(process.argv, {
   aliases: {
@@ -40,9 +41,6 @@ const answers = await prompts(
       name: "d",
       message: "Where do you want to create your Vitepress app ?",
       type: args._[0] ? (null as Falsy) : "text",
-      format: (value: string) => {
-        return value.replace(/\/$/, "");
-      },
     },
     {
       name: "l",
@@ -77,7 +75,8 @@ const spinner = new Spinner("Initializing your Vitepress app...");
 
 try {
   const base = "github:create-vitepress-app/core/templates/";
-  const cfg = { force: true, dir: args._[0] };
+  const dir = args._[0].replace(/\/$/, "");
+  const cfg = { force: true, dir };
 
   await Promise.all([
     downloadTemplate(`${base}shared`, cfg),
@@ -85,7 +84,17 @@ try {
     args.p ? downloadTemplate(`${base}prettier`, cfg) : Promise.resolve(),
   ]);
 
+  if (args.p) {
+    const data = await readFile(`${dir}/package.json`, "utf-8");
+    const obj = JSON.parse(data);
+
+    obj.devDependencies.prettier = "^2.8.3";
+
+    await writeFile(`${dir}/package.json`, JSON.stringify(obj));
+  }
+
   spinner.success();
 } catch (err) {
   spinner.error(err);
+  process.exit(1);
 }
