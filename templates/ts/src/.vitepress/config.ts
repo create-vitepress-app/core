@@ -6,8 +6,10 @@ export default defineConfig({
   description: "A Vitepress app.",
   cleanUrls: true,
 
+  head: [["link", { rel: "icon", type: "image/x-icon", href: "/favicon.svg" }]],
+
   themeConfig: {
-    logo: "/static/logo.svg",
+    logo: "/favicon.svg",
     nav: [{ text: "Docs", link: "/docs" }],
     sidebar: [
       {
