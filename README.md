@@ -10,6 +10,6 @@
 
 ## Usage
 
-Just run the following and just answer a few questions:
+Just run the following and just answer a few questions. [Learn more](https://create-vitepress-app.github.io)
 
     $ npm init vitepress-app@latest
