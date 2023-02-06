@@ -10,13 +10,13 @@ export default defineConfig({
 
   themeConfig: {
     logo: "/favicon.svg",
-    nav: [{ text: "Docs", link: "/docs" }],
+    nav: [{ text: "Docs", link: "/docs/" }],
     sidebar: [
       {
         text: "Documentation",
         items: [
-          { text: "Introduction", link: "/" },
-          { text: "Other things", link: "/other" },
+          { text: "Introduction", link: "/docs/" },
+          { text: "Other things", link: "/docs/other" },
         ],
       },
     ],
