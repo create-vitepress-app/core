@@ -1,3 +1,5 @@
+# This package has been deprecated in favor of Vitepress Setup Wizard ($ npx vitepress init)
+
 # create-vitepress-app
 
 [![npm version](https://img.shields.io/npm/v/create-vitepress-app)](https://www.npmjs.com/package/create-vitepress-app)
